@@ -1,2 +1,34 @@
 ---
-# tasks file for antonchernik.jdk
+- name: ORACLE JDK ROLE | Get JDK tarball (as tar.gz file)
+  get_url:
+   url:     "{{ jdk_tarball_url }}"
+   headers: 'Cookie:oraclelicense=accept-securebackup-cookie'
+   dest: "{{ default_download_path }}/{{ jdk_tarball_file }}.tar.gz"
+
+- unarchive:
+   src: "{{ default_download_path }}/{{ jdk_tarball_file }}.tar.gz"
+   dest: "{{ default_download_path }}/{{ jdk_tarball_file }}"
+
+- name: ORACLE JDK ROLE | Move jdk folder to bar /usr/lib/jvm
+  command: "mv {{ default_download_path }}/{{ jdk_tarball_file }} /usr/lib/jvm"
+
+- name: ORACLE JDK ROLE | Update alternatives install javac
+  command: update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/bin/javac 1
+
+- name: ORACLE JDK ROLE | Update alternatives install java
+  command: update-alternatives --install /usr/bin/java java /usr/lib/jvm/bin/java 1
+
+- name: ORACLE JDK ROLE | Update alternatives install javaws
+  command: update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/bin/javaws 1
+
+- name: ORACLE JDK ROLE | Update alternatives configure javac
+  command: update-alternatives --config javac
+
+- name: ORACLE JDK ROLE | Update alternatives configure java
+  command: update-alternatives --config java
+
+- name: ORACLE JDK ROLE | Update alternatives configure javaws
+  command: update-alternatives --config javaws
+
+- name: ORACLE JDK ROLE | List alternatives java, javac, javaws
+  command: ls -la /etc/alternatives/{java,javac,javaws}
