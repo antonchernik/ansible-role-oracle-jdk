@@ -4,31 +4,26 @@
    url:     "{{ jdk_tarball_url }}"
    headers: 'Cookie:oraclelicense=accept-securebackup-cookie'
    dest: "{{ default_download_path }}/{{ jdk_tarball_file }}.tar.gz"
+   mode: 0666
 
-- unarchive:
-   src: "{{ default_download_path }}/{{ jdk_tarball_file }}.tar.gz"
-   dest: "{{ default_download_path }}/{{ jdk_tarball_file }}"
+
+- name: ORACLE JDK ROLE | Unarchive tar ball
+  command: "chdir={{ default_download_path }} tar -zxvf {{ default_download_path }}/{{ jdk_tarball_file }}.tar.gz"
 
 - name: ORACLE JDK ROLE | Move jdk folder to bar /usr/lib/jvm
-  command: "mv {{ default_download_path }}/{{ jdk_tarball_file }} /usr/lib/jvm"
+  command: "mv {{ default_download_path }}/{{ jdk_tarball_folder }} /usr/lib/jvm"
 
 - name: ORACLE JDK ROLE | Update alternatives install javac
-  command: update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/bin/javac 1
-
-- name: ORACLE JDK ROLE | Update alternatives install java
-  command: update-alternatives --install /usr/bin/java java /usr/lib/jvm/bin/java 1
-
-- name: ORACLE JDK ROLE | Update alternatives install javaws
-  command: update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/bin/javaws 1
+  command: update-alternatives --install /usr/bin/{{item}} {{item}} /usr/lib/jvm/bin/{{item}} 1
+  with_items:
+   - javac
+   - java
+   - javaws
 
 - name: ORACLE JDK ROLE | Update alternatives configure javac
-  command: update-alternatives --config javac
+  command: update-alternatives --config {{item}}
+  with_items:
+    - javac
+    - java
+    - javaws
 
-- name: ORACLE JDK ROLE | Update alternatives configure java
-  command: update-alternatives --config java
-
-- name: ORACLE JDK ROLE | Update alternatives configure javaws
-  command: update-alternatives --config javaws
-
-- name: ORACLE JDK ROLE | List alternatives java, javac, javaws
-  command: ls -la /etc/alternatives/{java,javac,javaws}
