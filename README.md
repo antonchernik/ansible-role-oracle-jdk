@@ -18,6 +18,8 @@ jdk_tarball_url: Oracle JDK tarball url
 
 jdk_tarball_file: Oracle JDK tarball file name
 
+jdk_tarball_folder: Oracle JDK extract folder
+
 default_download_path: default download folder
 
 
