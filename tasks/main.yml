@@ -3,13 +3,13 @@
   get_url:
    url:     "{{ jdk_tarball_url }}"
    headers: 'Cookie:oraclelicense=accept-securebackup-cookie'
-   dest: "{{ default_download_path }}/{{ jdk_tarball_file }}.tar.gz"
+   dest: "{{ default_download_directory }}/{{ jdk_tarball_file }}.tar.gz"
    mode: 0666
 
-- name: ORACLE JDK ROLE | Remove {{ default_download_path }}/{{ jdk_tarball_folder }}
+- name: ORACLE JDK ROLE | Remove {{ default_download_directory }}/{{ jdk_tarball_directory }}
   file:
     state: absent
-    path: "{{ default_download_path }}/{{ jdk_tarball_folder }}"
+    path: "{{ default_download_directory }}/{{ jdk_tarball_directory }}"
 
 - name: ORACLE JDK ROLE | Remove /usr/lib/jvm
   file:
@@ -17,10 +17,10 @@
     path: "/usr/lib/jvm"
 
 - name: ORACLE JDK ROLE | Unarchive tar ball
-  command: "chdir={{ default_download_path }} tar -zxvf {{ default_download_path }}/{{ jdk_tarball_file }}.tar.gz"
+  command: "chdir={{ default_download_directory }} tar -zxvf {{ default_download_path }}/{{ jdk_tarball_file }}.tar.gz"
 
 - name: ORACLE JDK ROLE | Move jdk folder to bar /usr/lib/jvm
-  command: "mv {{ default_download_path }}/{{ jdk_tarball_folder }} /usr/lib/jvm"
+  command: "mv {{ default_download_directory }}/{{ jdk_tarball_directory }} /usr/lib/jvm"
 
 - name: ORACLE JDK ROLE | Update alternatives install {{item}}
   command: update-alternatives --install /usr/bin/{{item}} {{item}} /usr/lib/jvm/bin/{{item}} 1

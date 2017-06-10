@@ -14,14 +14,13 @@ Role Variables
 
 Available variables are listed below, along with default values (see defaults/main.yml):
 
-jdk_tarball_url: Oracle JDK tarball url
-
-jdk_tarball_file: Oracle JDK tarball file name
-
-jdk_tarball_folder: Oracle JDK extract folder
-
-default_download_path: default download folder
-
+| Parameter | Required | Default | Choices | Comments |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| default_download_directory | yes | /tmp | | Sets directory where files will be downloaded |
+| jdk_tarball_url  | yes | http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz | | Sets Oracle JDK tarball url  |
+| jdk_tarball_file | yes  | jdk-8u131-linux-x64 | | Sets Oracle JDK tarball file name |
+| jdk_tarball_directory | yes  | jira | jdk1.8.0_131 | Oracle JDK extract directory |
+| java_home_directory | yes  | /usr/lib/jvm | | Sets path to JAVA_HOME |
 
 Dependencies
 ------------
