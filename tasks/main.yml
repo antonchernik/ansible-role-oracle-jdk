@@ -38,4 +38,4 @@
 
 - lineinfile:
     path: /etc/environment
-    line: 'JAVA_HOME="/usr/lib/jvm"'
+    line: 'JAVA_HOME="{{ java_home_directory }}"'

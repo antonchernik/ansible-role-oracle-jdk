@@ -3,3 +3,4 @@ jdk_tarball_url: http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a0
 jdk_tarball_file: jdk-8u131-linux-x64
 jdk_tarball_folder: jdk1.8.0_131
 default_download_path: /tmp
+java_home_directory: /usr/lib/jvm
