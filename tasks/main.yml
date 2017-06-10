@@ -46,3 +46,4 @@
 - lineinfile:
     path: /etc/environment
     line: 'JAVA_HOME="{{ java_home_directory }}"'
+  become: true
