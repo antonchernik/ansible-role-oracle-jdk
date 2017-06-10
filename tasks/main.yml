@@ -10,17 +10,21 @@
   file:
     state: absent
     path: "{{ default_download_directory }}/{{ jdk_tarball_directory }}"
+  become: true
 
 - name: ORACLE JDK ROLE | Remove /usr/lib/jvm
   file:
     state: absent
     path: "/usr/lib/jvm"
+  become: true
 
 - name: ORACLE JDK ROLE | Unarchive tar ball
-  command: "chdir={{ default_download_directory }} tar -zxvf {{ default_download_path }}/{{ jdk_tarball_file }}.tar.gz"
+  command: "chdir={{ default_download_directory }} tar -zxvf {{ default_download_directory }}/{{ jdk_tarball_file }}.tar.gz"
+  become: true
 
 - name: ORACLE JDK ROLE | Move jdk folder to bar /usr/lib/jvm
   command: "mv {{ default_download_directory }}/{{ jdk_tarball_directory }} /usr/lib/jvm"
+  become: true
 
 - name: ORACLE JDK ROLE | Update alternatives install {{item}}
   command: update-alternatives --install /usr/bin/{{item}} {{item}} /usr/lib/jvm/bin/{{item}} 1
@@ -28,6 +32,8 @@
    - javac
    - java
    - javaws
+  become: true
+
 
 - name: ORACLE JDK ROLE | Update alternatives configure {{item}}
   command: update-alternatives --config {{item}}
@@ -35,6 +41,7 @@
     - javac
     - java
     - javaws
+  become: true
 
 - lineinfile:
     path: /etc/environment
