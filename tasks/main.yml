@@ -36,3 +36,6 @@
     - java
     - javaws
 
+- lineinfile:
+    path: /etc/environment
+    line: 'JAVA_HOME="/usr/lib/jvm"'
