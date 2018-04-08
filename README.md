@@ -19,7 +19,7 @@ Available variables are listed below, along with default values (see defaults/ma
 | Parameter | Required | Default | Choices | Comments |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | default_download_directory | yes | /tmp | | Sets directory where files will be downloaded |
-| jdk_tarball_url  | yes | http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz | | Sets Oracle JDK tarball url  |
+| jdk_tarball_url  | yes | http://download.oracle.com/otn-pub/java/jdk/8u162-b12/0da788060d494f5095bf8624735fa2f1/jdk-8u162-linux-x64.tar.gz | | Sets Oracle JDK tarball url  |
 | jdk_tarball_file | yes  | jdk-8u162-linux-x64 | | Sets Oracle JDK tarball file name |
 | jdk_tarball_directory | yes  | jira | jdk1.8.0_162 | Sets Oracle JDK extract directory |
 | java_home_directory | yes  | /usr/lib/jvm | | Sets path to JAVA_HOME |
